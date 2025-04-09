@@ -1,4 +1,4 @@
-export default function Movie({ movie }) {
+export default function Movie({ movie, addToWatchList }) {
   const imgSrc = movie.Poster === "N/A" ? "images/no-image.jpg" : movie.Poster;
   const rating = movie.Rating === "N/A" ? "Not available" : movie.imdbRating;
   const runtime =
@@ -6,8 +6,11 @@ export default function Movie({ movie }) {
   const actors = movie.Actors === "N/A" ? "not available" : movie.Actors;
   const plot =
     movie.Plot === "N/A" ? "Description is not available" : movie.Plot;
-  //const btnClass = addClass ? "movie__btn movie__btn_added" : "movie__btn";
+  const btnClass = movie.addedWatchList
+    ? "movie__btn movie__btn_added"
+    : "movie__btn";
   //localStorage.clear();
+  console.log(movie.addedWatchList);
 
   /**
    *
@@ -51,7 +54,13 @@ export default function Movie({ movie }) {
           <span className="movie__info">Description: </span>
           {plot}
         </div>
-        <button className="movie__btn">Watchlist</button>
+        <button
+          className={btnClass}
+          data-movie={movie.imdbID}
+          onClick={(e) => addToWatchList(e)}
+        >
+          Watchlist
+        </button>
       </div>
     </li>
   );

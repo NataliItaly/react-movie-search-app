@@ -8,9 +8,12 @@ function App() {
   const [input, setInput] = useState("");
   const [searchMovie, setSearchMovie] = useState(null);
   const [moviesList, setMoviesList] = useState([]);
+  const [watchList, setWatchList] = useState([]);
   const apiKey = "e2485c75";
 
   console.log(moviesList);
+  console.log(watchList);
+
   useEffect(() => {
     if (searchMovie) {
       const fetchMovies = async () => {
@@ -29,7 +32,9 @@ function App() {
             });
 
             const moviesData = await Promise.all(moviePromises);
-            setMoviesList(moviesData);
+            setMoviesList(
+              moviesData.map((movie) => ({ ...movie, addedWatchList: false }))
+            );
           }
         } catch (error) {
           console.error("Error fetching movies:", error);
@@ -45,10 +50,26 @@ function App() {
   }
 
   function handleSubmit(formData) {
-    //e.preventDefault();
-    //const formData = new FormData(e.currentTarget);
     const searchStr = formData.get("search-input").toLowerCase().trim();
     setSearchMovie(searchStr);
+  }
+
+  function addToWatchList(e) {
+    console.log(e.target.dataset.movie);
+    const [addedMovie] = moviesList.filter(
+      (movie) => movie.imdbID === e.target.dataset.movie
+    );
+    console.log(addedMovie.addedWatchList);
+    console.log(addedMovie);
+
+    const modifiedMoviesList = moviesList.map((movie) =>
+      movie.imdbID === e.target.dataset.movie
+        ? { ...movie, addedWatchList: !movie.addedWatchList }
+        : movie
+    );
+    setMoviesList(modifiedMoviesList);
+    const modifiedWatchList = watchList.filter((movie) => movie.addedWatchList);
+    setWatchList(modifiedWatchList);
   }
 
   return (
@@ -59,6 +80,8 @@ function App() {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         moviesList={moviesList}
+        watchList={watchList}
+        addToWatchList={addToWatchList}
       />
       <Footer />
     </>
