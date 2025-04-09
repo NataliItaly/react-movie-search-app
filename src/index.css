@@ -33,14 +33,9 @@
 
 body {
   min-height: 100vh;
-  background-image: linear-gradient(
-    to bottom,
-    #0b0916,
-    #3b354f 60%,
-    #0b0916 90%
-  );
   color: var(--main-color);
   font-style: italic;
+  background: #110e22;
 }
 
 #root {
