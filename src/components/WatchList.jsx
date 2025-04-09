@@ -1,10 +1,13 @@
 import React from "react";
 import Movie from "./Movie";
+import { nanoid } from "nanoid";
 
-export default function WatchList({ watchList }) {
+export default function WatchList({ watchList, addToWatchList }) {
   const watchListMovies =
     watchList.length > 0
-      ? watchList.map((movie) => <Movie movie={movie} />)
+      ? watchList.map((movie) => (
+          <Movie key={nanoid()} movie={movie} addToWatchList={addToWatchList} />
+        ))
       : null;
 
   return (

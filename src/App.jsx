@@ -12,7 +12,7 @@ function App() {
   const apiKey = "e2485c75";
 
   console.log(moviesList);
-  console.log(watchList);
+  console.log("watchList: ", watchList);
 
   useEffect(() => {
     if (searchMovie) {
@@ -55,21 +55,30 @@ function App() {
   }
 
   function addToWatchList(e) {
-    console.log(e.target.dataset.movie);
-    const [addedMovie] = moviesList.filter(
+    const [modifiedMovie] = moviesList.filter(
       (movie) => movie.imdbID === e.target.dataset.movie
     );
-    console.log(addedMovie.addedWatchList);
-    console.log(addedMovie);
+    modifiedMovie.addedWatchList = !modifiedMovie.addedWatchList;
 
     const modifiedMoviesList = moviesList.map((movie) =>
       movie.imdbID === e.target.dataset.movie
-        ? { ...movie, addedWatchList: !movie.addedWatchList }
+        ? { ...movie, addedWatchList: modifiedMovie.addedWatchList }
         : movie
     );
     setMoviesList(modifiedMoviesList);
-    const modifiedWatchList = watchList.filter((movie) => movie.addedWatchList);
-    setWatchList(modifiedWatchList);
+
+    if (modifiedMovie.addedWatchList) {
+      setWatchList((prev) => [...prev, modifiedMovie]);
+    } else {
+      const modifiedWatchList = watchList
+        .map((movie) =>
+          modifiedMovie.imdbID === movie.imdbID
+            ? { ...movie, addedWatchList: false }
+            : movie
+        )
+        .filter((movie) => movie.addedWatchList);
+      setWatchList(modifiedWatchList);
+    }
   }
 
   return (

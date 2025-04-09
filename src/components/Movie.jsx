@@ -9,13 +9,7 @@ export default function Movie({ movie, addToWatchList }) {
   const btnClass = movie.addedWatchList
     ? "movie__btn movie__btn_added"
     : "movie__btn";
-  //localStorage.clear();
-  console.log(movie.addedWatchList);
 
-  /**
-   *
-
-   */
   return (
     <li className="movie" data-movie={movie.imdbID}>
       <img src={imgSrc} alt={movie.Title} className="movie__poster" />
