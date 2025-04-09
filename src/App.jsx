@@ -9,15 +9,24 @@ function App() {
   const [searchMovie, setSearchMovie] = useState(null);
   const [moviesList, setMoviesList] = useState([]);
   const apiKey = "e2485c75";
-  console.log(searchMovie);
+
   console.log(moviesList);
   useEffect(() => {
     if (searchMovie) {
+      let moviesData = [];
       fetch(`http://www.omdbapi.com/?s=${searchMovie}&apikey=${apiKey}`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data.Search);
-          setMoviesList(data.Search);
+          data.Search.forEach((movie) => {
+            const requestMovieStr = `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`;
+            fetch(requestMovieStr)
+              .then((response) => response.json())
+              .then((data) => {
+                moviesData.push(data);
+              });
+          });
+          setMoviesList(moviesData);
         });
     }
   }, [searchMovie]);
@@ -25,15 +34,12 @@ function App() {
   function handleChange(e) {
     setInput(e.target.value);
   }
-  console.log(input);
 
   function handleSubmit(formData) {
     //e.preventDefault();
     //const formData = new FormData(e.currentTarget);
-    console.log(formData);
     const searchStr = formData.get("search-input").toLowerCase().trim();
     setSearchMovie(searchStr);
-    console.log("search", searchStr);
   }
 
   return (

@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./Form";
 import Movie from "./Movie";
+import { nanoid } from "nanoid";
 
 export default function Main({
   input,
@@ -9,7 +10,8 @@ export default function Main({
   moviesList,
 }) {
   const movies =
-    moviesList.length > 0 && moviesList.map((movie) => <Movie movie={movie} />);
+    moviesList.length > 0 &&
+    moviesList.map((movie) => <Movie key={nanoid()} movie={movie} />);
 
   return (
     <main className="main">
@@ -18,7 +20,7 @@ export default function Main({
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <ul className="movies">{movies}</ul>
+      <ul className="movies__container">{movies}</ul>
     </main>
   );
 }

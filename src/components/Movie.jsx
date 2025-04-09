@@ -8,28 +8,47 @@ export default function Movie({ movie }) {
     movie.Plot === "N/A" ? "Description is not available" : movie.Plot;
   //const btnClass = addClass ? "movie__btn movie__btn_added" : "movie__btn";
   //localStorage.clear();
+
+  /**
+   *
+
+   */
   return (
-    <li class="movie" data-movie={movie.imdbID}>
-      <img src={imgSrc} alt={movie.Title} class="movie__poster" />
-      <div class="movie__data">
-        <div class="movie__header">
-          <h2 class="movie__title">{movie.Title}</h2>
-          <p class="movie__rate">
-            <img src="images/star.svg" alt="" />
-            <span class="movie__rating">{rating}</span>
+    <li className="movie" data-movie={movie.imdbID}>
+      <img src={imgSrc} alt={movie.Title} className="movie__poster" />
+      <div className="movie__data">
+        <h2 className="movie__title">{movie.Title}</h2>
+        <div className="movie__header">
+          <span className="movie__year">{movie.Year}</span>
+          <span className="movie__country">{movie.Country}</span>
+          <span className="movie__runtime">{runtime}</span>
+          <span className="movie__genre">{movie.Genre}</span>
+          <p className="movie__rate">
+            <svg
+              className="movie__rate-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 1L19 11H29L21 18L24 29L15 22L6 29L9 18L1 11H11L15 1Z"
+                fill="#DA38F3"
+                stroke="#DA38F3"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span className="movie__rating">{rating}</span>
           </p>
         </div>
-        <div class="movie__header">
-          <p class="movie__year">{movie.Year}</p>
-          <p>{movie.Country}</p>
+        <div className="movie__actors">
+          <span className="movie__info">Actors:</span> {actors}
         </div>
-        <div class="movie__info">
-          <span class="movie__runtime">{runtime}</span>
-          <span class="movie__genre">{movie.Genre}</span>
-          <button class="movie__btn">Watchlist</button>
-        </div>
-        <div class="movie__actors">Actors: {actors}</div>
-        <div class="movie__description">{plot}</div>
+        <div className="movie__description">{plot}</div>
+        <button className="movie__btn">Watchlist</button>
       </div>
     </li>
   );

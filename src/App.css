@@ -59,6 +59,7 @@
 .main {
   flex-grow: 1;
   background: url(./assets/bg-3.svg) no-repeat center/100%;
+  padding: 40px 20px;
 }
 
 .form {
@@ -120,6 +121,126 @@
 .form__input::placeholder {
   color: #877ab5;
   font-style: italic;
+}
+
+.movies__container {
+  max-width: 1200px;
+  padding: 40px 20px 0;
+  margin: 0 auto;
+}
+
+.movie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 20px 0;
+  color: antiquewhite;
+  font-style: normal;
+}
+
+.movie__poster {
+  width: 230px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.movie__data {
+  width: 400px;
+}
+
+.movie__title {
+  color: var(--main-color);
+  text-align: justify;
+  font-size: 22px;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.movie__header {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  column-gap: 20px;
+  row-gap: 0;
+  margin-bottom: 20px;
+}
+
+.movie__year {
+  grid-column: 1;
+}
+
+.movie__country {
+  grid-column: 2;
+  color: var(--terziary-color);
+}
+
+.movie__runtime {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.movie__genre {
+  grid-column: 2;
+  grid-row: 2;
+  color: var(--terziary-color);
+}
+
+.movie__rate {
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.movie__rate-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.movie__rating {
+  font-size: 14px;
+  line-height: 14px;
+  margin-left: auto;
+}
+
+.movie__info {
+  color: var(--terziary-color);
+}
+
+.movie__btn {
+  font-size: 14px;
+  border: none;
+  padding-left: 30px;
+  color: #fff;
+  background: #da38f3 8px / contain no-repeat url(assets/add-movie-icon.svg);
+  background-size: 15px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+
+.movie__btn:hover {
+  background: #ad4abd 8px no-repeat url(assets/add-movie-icon.svg);
+  background-size: 15px;
+}
+
+.movie__btn_added {
+  background: left / contain no-repeat url(images/remove-movie.svg);
+}
+
+.movie__actors {
+  margin-bottom: 6px;
+}
+
+.movie__description {
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
 .footer {
