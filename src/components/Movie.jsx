@@ -34,11 +34,11 @@ export default function Movie({ movie }) {
             >
               <path
                 d="M15 1L19 11H29L21 18L24 29L15 22L6 29L9 18L1 11H11L15 1Z"
-                fill="#DA38F3"
-                stroke="#DA38F3"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                fill="#00f1ff"
+                stroke="#00f1ff"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <span className="movie__rating">{rating}</span>
@@ -47,7 +47,10 @@ export default function Movie({ movie }) {
         <div className="movie__actors">
           <span className="movie__info">Actors:</span> {actors}
         </div>
-        <div className="movie__description">{plot}</div>
+        <div className="movie__description">
+          <span className="movie__info">Description: </span>
+          {plot}
+        </div>
         <button className="movie__btn">Watchlist</button>
       </div>
     </li>

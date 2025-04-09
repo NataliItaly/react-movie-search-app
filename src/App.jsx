@@ -13,21 +13,30 @@ function App() {
   console.log(moviesList);
   useEffect(() => {
     if (searchMovie) {
-      let moviesData = [];
-      fetch(`http://www.omdbapi.com/?s=${searchMovie}&apikey=${apiKey}`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.Search);
-          data.Search.forEach((movie) => {
-            const requestMovieStr = `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`;
-            fetch(requestMovieStr)
-              .then((response) => response.json())
-              .then((data) => {
-                moviesData.push(data);
-              });
-          });
-          setMoviesList(moviesData);
-        });
+      const fetchMovies = async () => {
+        try {
+          const response = await fetch(
+            `http://www.omdbapi.com/?s=${searchMovie}&apikey=${apiKey}`
+          );
+          const data = await response.json();
+
+          if (data.Search) {
+            const moviePromises = data.Search.map(async (movie) => {
+              const movieResponse = await fetch(
+                `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`
+              );
+              return await movieResponse.json();
+            });
+
+            const moviesData = await Promise.all(moviePromises);
+            setMoviesList(moviesData);
+          }
+        } catch (error) {
+          console.error("Error fetching movies:", error);
+        }
+      };
+
+      fetchMovies();
     }
   }, [searchMovie]);
 
