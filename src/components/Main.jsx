@@ -26,7 +26,7 @@ export default function Main({
         handleSubmit={handleSubmit}
       />
       <ul className="movies__container">{movies}</ul>
-      <WatchList watchList={watchList} />
+      <WatchList watchList={watchList} addToWatchList={addToWatchList} />
     </main>
   );
 }
