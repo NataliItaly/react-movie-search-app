@@ -32,7 +32,7 @@ function App() {
           if (data.Search) {
             const moviePromises = data.Search.map(async (movie) => {
               const movieResponse = await fetch(
-                `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`
+                `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}&plot=full`
               );
               return await movieResponse.json();
             });
