@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.png";
 
-export default function Header() {
+export default function Header({ isHome, handleIsHome }) {
   return (
     <header className="header header_home">
       <div className="header__banner"></div>
@@ -16,9 +16,17 @@ export default function Header() {
         </div>
         <ul className="header__menu">
           <li className="header__item">
-            <a href="" className="header__link">
-              My Watch List
-            </a>
+            <button
+              className={
+                isHome
+                  ? "header__link header__link_home"
+                  : "header__link header__link_watchlist"
+              }
+              role="link"
+              onClick={handleIsHome}
+            >
+              {isHome ? "My Watch List" : "Back to Home Page"}
+            </button>
           </li>
         </ul>
       </nav>

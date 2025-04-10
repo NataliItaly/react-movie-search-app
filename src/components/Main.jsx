@@ -11,6 +11,8 @@ export default function Main({
   moviesList,
   watchList,
   addToWatchList,
+  error,
+  isHome,
 }) {
   const movies =
     moviesList.length > 0 &&
@@ -20,13 +22,24 @@ export default function Main({
 
   return (
     <main className="main">
-      <Form
-        input={input}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
-      <ul className="movies__container">{movies}</ul>
-      <WatchList watchList={watchList} addToWatchList={addToWatchList} />
+      {isHome ? (
+        <section>
+          <Form
+            input={input}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+          {error ? (
+            <div className="error">
+              <p>There is no movie found. Please try something else...</p>
+            </div>
+          ) : (
+            <ul className="movies__container">{movies}</ul>
+          )}
+        </section>
+      ) : (
+        <WatchList watchList={watchList} addToWatchList={addToWatchList} />
+      )}
     </main>
   );
 }

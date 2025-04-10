@@ -11,6 +11,8 @@ function App() {
   const [watchList, setWatchList] = useState(
     JSON.parse(localStorage.getItem("watchList")) || []
   );
+  const [error, setError] = useState(false);
+  const [isHome, setIsHome] = useState(true);
 
   window.localStorage.setItem("watchList", JSON.stringify(watchList));
   const apiKey = "e2485c75";
@@ -39,6 +41,9 @@ function App() {
             setMoviesList(
               moviesData.map((movie) => ({ ...movie, addedWatchList: false }))
             );
+          } else {
+            setMoviesList([]);
+            setError(true);
           }
         } catch (error) {
           console.error("Error fetching movies:", error);
@@ -49,6 +54,10 @@ function App() {
     }
   }, [searchMovie]);
 
+  function handleIsHome() {
+    setIsHome((prev) => !prev);
+  }
+
   function handleChange(e) {
     setInput(e.target.value);
   }
@@ -56,6 +65,7 @@ function App() {
   function handleSubmit(formData) {
     const searchStr = formData.get("search-input").toLowerCase().trim();
     setSearchMovie(searchStr);
+    setInput("");
   }
 
   function addToWatchList(e) {
@@ -89,7 +99,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header isHome={isHome} handleIsHome={handleIsHome} />
       <Main
         input={input}
         handleChange={handleChange}
@@ -97,6 +107,8 @@ function App() {
         moviesList={moviesList}
         watchList={watchList}
         addToWatchList={addToWatchList}
+        error={error}
+        isHome={isHome}
       />
       <Footer />
     </>
