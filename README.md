@@ -2,7 +2,7 @@
 Application that enabled user to obtain movie information.
 
 # Technologie
-Build with React JS using RESTful API [The Open Movie Database](https://www.omdbapi.com/) and LocalStorage to save user's watch List.
+Build with React JS using RESTful API [The Open Movie Database](https://www.omdbapi.com/) and LocalStorage API to save user's watch List.
 
 # Responsive
 Fully responsive design, enable to watch on any screen size
