@@ -7,7 +7,7 @@ export default function Header({ isHome, handleIsHome }) {
       <div className="header__banner"></div>
       <nav className="header__nav">
         <div className="header__logo logo">
-          <img src={logo} alt="Movie App logo." />
+          <img src={logo} alt="Movie App logo." className="logo__img" />
           <p className="logo__text">
             <span className="logo__span">M</span>ovie{" "}
             <span className="logo__span">S</span>earch{" "}
