@@ -28,6 +28,7 @@ export default function Main({
             input={input}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
+            isHome={isHome}
           />
           {error ? (
             <div className="error">

@@ -12,6 +12,7 @@ export default function Form({ input, handleChange, handleSubmit }) {
           name="search-input"
           value={input}
           onChange={(e) => handleChange(e)}
+          autoFocus
         />
       </label>
     </form>

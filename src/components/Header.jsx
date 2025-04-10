@@ -23,6 +23,7 @@ export default function Header({ isHome, handleIsHome }) {
                   : "header__link header__link_watchlist"
               }
               role="link"
+              tabIndex="0"
               onClick={handleIsHome}
             >
               {isHome ? "My Watch List" : "Back to Home Page"}
