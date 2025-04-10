@@ -3,8 +3,10 @@ import Movie from "./Movie";
 import { nanoid } from "nanoid";
 
 export default function WatchList({ watchList, addToWatchList }) {
+  const storageWatchList = JSON.parse(localStorage.getItem("watchList"));
+
   const watchListMovies =
-    watchList.length > 0
+    storageWatchList.length > 0
       ? watchList.map((movie) => (
           <Movie key={nanoid()} movie={movie} addToWatchList={addToWatchList} />
         ))

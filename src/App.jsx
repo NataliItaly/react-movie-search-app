@@ -8,7 +8,11 @@ function App() {
   const [input, setInput] = useState("");
   const [searchMovie, setSearchMovie] = useState(null);
   const [moviesList, setMoviesList] = useState([]);
-  const [watchList, setWatchList] = useState([]);
+  const [watchList, setWatchList] = useState(
+    JSON.parse(localStorage.getItem("watchList")) || []
+  );
+
+  window.localStorage.setItem("watchList", JSON.stringify(watchList));
   const apiKey = "e2485c75";
 
   console.log(moviesList);
@@ -79,6 +83,8 @@ function App() {
         .filter((movie) => movie.addedWatchList);
       setWatchList(modifiedWatchList);
     }
+
+    localStorage.setItem("watchList", JSON.stringify(watchList));
   }
 
   return (
