@@ -1,16 +1,16 @@
-# React + Vite
+# Movie Search App 
+Application that enabled user to obtain movie information.
 
-git branch -M master
-git remote add origin git@github.com:NataliItaly/react-movie-search-app.git
-git push -u origin master
+# Technologie
+Build with React JS using RESTful API [The Open Movie Database](https://www.omdbapi.com/) and LocalStorage to save user's watch List.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Responsive
+Fully responsive design, enable to watch on any screen size
 
-Currently, two official plugins are available:
+# Design
+design file is created in [Figma](https://www.figma.com/design/xI23W4WDuRamkRY5gi8pAM/Movie-App?node-id=9-6146&t=i8RuLzakiqOYvQfV-1)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Movie Search App is deployed at:
+[Netlify](https://movie-search-app-omdb-api.netlify.app/)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
