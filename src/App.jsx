@@ -13,12 +13,13 @@ function App() {
   );
   const [error, setError] = useState(false);
   const [isHome, setIsHome] = useState(true);
+  const [filter, setFilter] = useState(null);
 
   window.localStorage.setItem("watchList", JSON.stringify(watchList));
   const apiKey = "e2485c75";
 
   console.log(moviesList);
-  console.log("watchList: ", watchList);
+  console.log("filter: ", filter);
 
   useEffect(() => {
     if (searchMovie) {
@@ -54,6 +55,35 @@ function App() {
     }
   }, [searchMovie]);
 
+  useEffect(() => {
+    if (filter) {
+      if (filter === "year-earliest") {
+        const filteredMoviesList = moviesList.sort(
+          (a, b) => parseFloat(a.Year) - parseFloat(b.Year)
+        );
+        setMoviesList(filteredMoviesList);
+      } else if (filter === "year-latest") {
+        const filteredMoviesList = moviesList.sort(
+          (a, b) => parseFloat(b.Year) - parseFloat(a.Year)
+        );
+        setMoviesList(filteredMoviesList);
+      }
+
+      if (filter === "rate-highest") {
+        const filteredMoviesList = moviesList.sort(
+          (a, b) => parseFloat(a.imdbID) - parseFloat(b.imdbID)
+        );
+        console.log("filteredList ", filteredMoviesList);
+        setMoviesList(filteredMoviesList);
+      } else if (filter === "rate-lowest") {
+        const filteredMoviesList = moviesList.sort(
+          (a, b) => parseFloat(b.imdbID) - parseFloat(a.imdbID)
+        );
+        setMoviesList(filteredMoviesList);
+      }
+    }
+  }, [filter]);
+
   function handleIsHome() {
     setIsHome((prev) => !prev);
   }
@@ -66,6 +96,12 @@ function App() {
     const searchStr = formData.get("search-input").toLowerCase().trim();
     setSearchMovie(searchStr);
     setInput("");
+  }
+
+  function onFilterChange(e) {
+    console.log("change");
+    console.log(e.target.value);
+    setFilter(e.target.value);
   }
 
   function addToWatchList(e) {
@@ -109,6 +145,8 @@ function App() {
         addToWatchList={addToWatchList}
         error={error}
         isHome={isHome}
+        onFilterChange={onFilterChange}
+        filter={filter}
       />
       <Footer />
     </>

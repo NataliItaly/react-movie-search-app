@@ -3,6 +3,7 @@ import Form from "./Form";
 import Movie from "./Movie";
 import { nanoid } from "nanoid";
 import WatchList from "./WatchList";
+import Filter from "./Filter";
 
 export default function Main({
   input,
@@ -13,6 +14,8 @@ export default function Main({
   addToWatchList,
   error,
   isHome,
+  onFilterChange,
+  filter,
 }) {
   const movies =
     moviesList.length > 0 &&
@@ -35,7 +38,12 @@ export default function Main({
               <p>There is no movie found. Please try something else...</p>
             </div>
           ) : (
-            <ul className="movies__container">{movies}</ul>
+            <>
+              {moviesList.length > 0 && (
+                <Filter onFilterChange={onFilterChange} filter={filter} />
+              )}
+              <ul className="movies__container">{movies}</ul>
+            </>
           )}
         </section>
       ) : (
