@@ -1,18 +1,11 @@
 import React from "react";
 
-export default function Filter({ onFilterChange, filter }) {
-  /*const [filter, setFilter] = useState(null);
-  console.log(filter);
-  function onFilterChange(e) {
-    console.log(e.target.value);
-    setFilter(e.target.value);
-
-    if (filter === "year-earliest") {
-      const filteredMoviesList = moviesList.sort((a, b) => a.Year - b.Year);
-      setMoviesList(filteredMoviesList);
-    }
-  }*/
-
+export default function Filter({
+  onYearChange,
+  onRateChange,
+  yearFilter,
+  rateFilter,
+}) {
   return (
     <section className="filter">
       <h2 className="visually-hidden">Filter movies</h2>
@@ -23,18 +16,18 @@ export default function Filter({ onFilterChange, filter }) {
         </label>
         <select
           name="filter-year"
-          value={filter}
+          value={yearFilter}
           id="filter-year"
           className="filter__select"
-          onChange={(e) => onFilterChange(e)}
+          onChange={(e) => onYearChange(e)}
         >
-          <option className="filter__oprtion" desabled="true" value="">
+          <option className="filter__option" value="">
             Year
           </option>
-          <option className="filter__oprtion" value="year-earliest">
+          <option className="filter__option" value="year-earliest">
             From earliest year
           </option>
-          <option className="filter__oprtion" value="year-latest">
+          <option className="filter__option" value="year-latest">
             From latest year
           </option>
         </select>
@@ -43,18 +36,18 @@ export default function Filter({ onFilterChange, filter }) {
         </label>
         <select
           name="filter-rate"
-          value={filter}
+          value={rateFilter}
           id="filter-rate"
           className="filter__select"
-          onChange={(e) => onFilterChange(e)}
+          onChange={(e) => onRateChange(e)}
         >
-          <option className="filter__oprtion" desabled="true" value="">
+          <option className="filter__option" value="">
             Rating
           </option>
-          <option className="filter__oprtion" value="rate-highest">
+          <option className="filter__option" value="rate-highest">
             From highest rate
           </option>
-          <option className="filter__oprtion" value="rate-lowest">
+          <option className="filter__option" value="rate-lowest">
             From lowest rate
           </option>
         </select>

@@ -13,13 +13,14 @@ function App() {
   );
   const [error, setError] = useState(false);
   const [isHome, setIsHome] = useState(true);
-  const [filter, setFilter] = useState(null);
+  const [yearFilter, setYearFilter] = useState(null);
+  const [rateFilter, setRateFilter] = useState(null);
 
   window.localStorage.setItem("watchList", JSON.stringify(watchList));
   const apiKey = "e2485c75";
 
   console.log(moviesList);
-  console.log("filter: ", filter);
+  console.log("filter: ", rateFilter);
 
   useEffect(() => {
     if (searchMovie) {
@@ -56,33 +57,39 @@ function App() {
   }, [searchMovie]);
 
   useEffect(() => {
-    if (filter) {
-      if (filter === "year-earliest") {
-        const filteredMoviesList = moviesList.sort(
+    if (yearFilter) {
+      let filteredMoviesList = [...moviesList];
+      if (yearFilter === "year-earliest") {
+        filteredMoviesList.sort(
           (a, b) => parseFloat(a.Year) - parseFloat(b.Year)
         );
         setMoviesList(filteredMoviesList);
-      } else if (filter === "year-latest") {
-        const filteredMoviesList = moviesList.sort(
+      } else if (yearFilter === "year-latest") {
+        filteredMoviesList.sort(
           (a, b) => parseFloat(b.Year) - parseFloat(a.Year)
         );
         setMoviesList(filteredMoviesList);
       }
+    }
+  }, [yearFilter]);
 
-      if (filter === "rate-highest") {
-        const filteredMoviesList = moviesList.sort(
-          (a, b) => parseFloat(a.imdbID) - parseFloat(b.imdbID)
+  useEffect(() => {
+    if (rateFilter) {
+      let filteredMoviesList = [...moviesList];
+      if (rateFilter === "rate-highest") {
+        filteredMoviesList.sort(
+          (a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating)
         );
         console.log("filteredList ", filteredMoviesList);
         setMoviesList(filteredMoviesList);
-      } else if (filter === "rate-lowest") {
-        const filteredMoviesList = moviesList.sort(
-          (a, b) => parseFloat(b.imdbID) - parseFloat(a.imdbID)
+      } else if (rateFilter === "rate-lowest") {
+        filteredMoviesList.sort(
+          (a, b) => parseFloat(a.imdbRating) - parseFloat(b.imdbRating)
         );
         setMoviesList(filteredMoviesList);
       }
     }
-  }, [filter]);
+  }, [rateFilter]);
 
   function handleIsHome() {
     setIsHome((prev) => !prev);
@@ -98,10 +105,16 @@ function App() {
     setInput("");
   }
 
-  function onFilterChange(e) {
-    console.log("change");
+  function onYearChange(e) {
+    console.log("change year");
     console.log(e.target.value);
-    setFilter(e.target.value);
+    setYearFilter(e.target.value);
+  }
+
+  function onRateChange(e) {
+    console.log("change rate");
+    console.log(e.target.value);
+    setRateFilter(e.target.value);
   }
 
   function addToWatchList(e) {
@@ -145,8 +158,10 @@ function App() {
         addToWatchList={addToWatchList}
         error={error}
         isHome={isHome}
-        onFilterChange={onFilterChange}
-        filter={filter}
+        onYearChange={onYearChange}
+        onRateChange={onRateChange}
+        yearFilter={yearFilter}
+        rateFilter={rateFilter}
       />
       <Footer />
     </>

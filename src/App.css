@@ -239,17 +239,13 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .filter__select {
   background-color: #110e22;
-  color: #877ab5;
+  color: #d8cef9;
   padding: 10px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-}
-
-.filter__option {
-  color: #110e22;
 }
 
 .movies__container {

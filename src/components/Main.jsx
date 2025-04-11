@@ -14,8 +14,10 @@ export default function Main({
   addToWatchList,
   error,
   isHome,
-  onFilterChange,
-  filter,
+  onYearChange,
+  onRateChange,
+  yearFilter,
+  rateFilter,
 }) {
   const movies =
     moviesList.length > 0 &&
@@ -40,7 +42,12 @@ export default function Main({
           ) : (
             <>
               {moviesList.length > 0 && (
-                <Filter onFilterChange={onFilterChange} filter={filter} />
+                <Filter
+                  onYearChange={onYearChange}
+                  onRateChange={onRateChange}
+                  yearFilter={yearFilter}
+                  rateFilter={rateFilter}
+                />
               )}
               <ul className="movies__container">{movies}</ul>
             </>
