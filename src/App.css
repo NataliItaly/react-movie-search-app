@@ -579,7 +579,23 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 520px) {
+  .filter {
+    padding: 10px;
+  }
+  .filter__form {
+    flex-wrap: wrap;
+    row-gap: 5px;
+    column-gap: 20px;
+  }
+  .filter__title {
+    font-size: 18px;
+    flex: 1 0 100%;
+  }
+  .filter__select {
+    padding: 10px 5px;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 420px) {

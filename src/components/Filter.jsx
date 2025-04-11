@@ -10,7 +10,7 @@ export default function Filter({
     <section className="filter">
       <h2 className="visually-hidden">Filter movies</h2>
       <form className="filter__form">
-        <h3>Filter by</h3>
+        <h3 className="filter__title">Filter by</h3>
         <label htmlFor="" className="filter__label visually-hidden">
           Year
         </label>
@@ -25,10 +25,10 @@ export default function Filter({
             Year
           </option>
           <option className="filter__option" value="year-earliest">
-            From earliest year
+            First earliest
           </option>
           <option className="filter__option" value="year-latest">
-            From latest year
+            First latest
           </option>
         </select>
         <label htmlFor="" className="filter__label visually-hidden">
@@ -45,10 +45,10 @@ export default function Filter({
             Rating
           </option>
           <option className="filter__option" value="rate-highest">
-            From highest rate
+            First highest
           </option>
           <option className="filter__option" value="rate-lowest">
-            From lowest rate
+            First lowest
           </option>
         </select>
       </form>
